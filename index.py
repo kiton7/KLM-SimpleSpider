@@ -284,7 +284,16 @@ def main():
     out_path = 'output/'+conf['name']+'/';
     os.makedirs(out_path, exist_ok=True)
     # 初始化浏览器驱动
-    driver = webdriver.Edge()
+    driver
+    try:
+        if('driver' in conf):
+            if(conf['driver' == 'chrome']):
+                driver = webdriver.Chrome()
+            else:
+                driver = webdriver.Edge()
+    except:
+        print("浏览器驱动初始化失败")
+        return;
     driver.get(url)
     time.sleep(3)
     # 判断是否需预操作
